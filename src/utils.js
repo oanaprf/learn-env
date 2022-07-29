@@ -1,24 +1,9 @@
-import { shuffle, without, compact, remove } from "lodash";
-
-export const extractData = (fileData) => {
-  const rows = fileData?.split("\n");
-  const rowData = rows?.map((row) => row?.replace("\r", "")?.split("\t"));
-  const groupedData = rowData?.reduce((res, curr) => {
-    const question = curr.shift();
-    const delimiterIndex = curr?.lastIndexOf("");
-    return [
-      ...res,
-      ...(curr?.length > 1
-        ? [
-            {
-              question,
-              answers: shuffle(without(curr, "")),
-              correct: [...compact(remove(curr, (_, j) => j < delimiterIndex))],
-              incorrect: compact(curr),
-            },
-          ]
-        : []),
-    ];
-  }, []);
-  return groupedData;
-};
+export const mapData = (data) =>
+  data.map(
+    ({ question, correct, incorrect_1, incorrect_2, incorrect_3, incorrect_4 } = {}) => ({
+      question,
+      correct: [correct],
+      incorrect: [incorrect_1, incorrect_2, incorrect_3, incorrect_4],
+      answers: [correct, incorrect_1, incorrect_2, incorrect_3, incorrect_4],
+    })
+  );

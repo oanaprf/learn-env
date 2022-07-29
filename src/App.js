@@ -1,31 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Switch } from "antd";
 import { useTranslation } from "react-i18next";
+import { read, utils } from "xlsx";
 
 import "./App.css";
-import file_data from "./data.txt";
-import { extractData } from "./utils";
 import QuestionsCard from "./questionsCard/QuestionsCard";
 import { LANGUAGES } from "./constants";
+import { mapData } from "./utils";
 
 function App() {
-  const [fileData, setFileData] = useState();
   const [originalData, setOriginalData] = useState();
   const [language, setLanguage] = useState(LANGUAGES.RO);
   const { i18n } = useTranslation();
-
-  fetch(file_data)
-    .then((response) => response.text())
-    .then((text) => setFileData(text));
-
-  useEffect(() => {
-    setOriginalData(extractData(fileData));
-  }, [fileData]);
 
   const onLanguageChange = () => {
     const newLanguage = language === LANGUAGES.RO ? LANGUAGES.EN : LANGUAGES.RO;
     setLanguage(newLanguage);
     i18n.changeLanguage(newLanguage?.toLocaleLowerCase());
+  };
+
+  const readUploadFile = (e) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const json = utils.sheet_to_json(worksheet);
+        setOriginalData(mapData(json));
+      };
+      reader.readAsArrayBuffer(e.target.files[0]);
+    }
   };
 
   return (
@@ -36,6 +43,10 @@ function App() {
         unCheckedChildren={LANGUAGES.EN}
         onChange={onLanguageChange}
       />
+      <form>
+        <label htmlFor="upload">Upload File</label>
+        <input type="file" name="upload" id="upload" onChange={readUploadFile} />
+      </form>
       <QuestionsCard originalData={originalData} />
     </div>
   );

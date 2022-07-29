@@ -1,2 +1,0 @@
-intrebare 1		rasp corect 1		rasp fals 1	rasp fals 2	rasp fals 3
-intrebare 2		rasp corect 1	rasp corect 2		rasp fals1	rasp fals 2
