@@ -1,0 +1,16 @@
+{
+  "startTest": "Start the test",
+  "status": "Status",
+  "statuses": {
+    "not_started": "Not started",
+    "in_progress": "In progress",
+    "answered": "Answered"
+  },
+  "questionsLeftCount": "You have {{count}} questions left",
+  "correct": "correct",
+  "incorrect": "wrong",
+  "yourAnswerIs": "Your answer is ",
+  "sendYourAnswer": "Send your answer",
+  "nextQuestion": "Next question",
+  "restartTest": "Restart the test"
+}

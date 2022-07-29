@@ -1,0 +1,16 @@
+{
+  "startTest": "Incepe testul",
+  "status": "Status",
+  "statuses": {
+    "not_started": "Neinceput",
+    "in_progress": "In desfasurare",
+    "answered": "Raspuns trimis"
+  },
+  "questionsLeftCount": "Mai ai {{count}} intrebari ramase",
+  "correct": "corect",
+  "incorrect": "gresit",
+  "yourAnswerIs": "Raspunsul tau este ",
+  "sendYourAnswer": "Trimite raspunsul",
+  "nextQuestion": "Urmatoarea intrebare",
+  "restartTest": "Reia testul"
+}
