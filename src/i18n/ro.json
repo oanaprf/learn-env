@@ -7,10 +7,11 @@
     "answered": "Raspuns trimis"
   },
   "questionsLeftCount": "Mai ai {{count}} intrebari ramase",
-  "correct": "corect",
-  "incorrect": "gresit",
+  "correct": "CORECT",
+  "incorrect": "GRESIT",
   "yourAnswerIs": "Raspunsul tau este ",
   "sendYourAnswer": "Trimite raspunsul",
   "nextQuestion": "Urmatoarea intrebare",
-  "restartTest": "Reia testul"
+  "restartTest": "Reia testul",
+  "uploadFileAndStart": "Incarca intrebarile si incepe testul"
 }

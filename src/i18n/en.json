@@ -7,10 +7,11 @@
     "answered": "Answered"
   },
   "questionsLeftCount": "You have {{count}} questions left",
-  "correct": "correct",
-  "incorrect": "wrong",
+  "correct": "CORRECT",
+  "incorrect": "WRONG",
   "yourAnswerIs": "Your answer is ",
   "sendYourAnswer": "Send your answer",
   "nextQuestion": "Next question",
-  "restartTest": "Restart the test"
+  "restartTest": "Restart the test",
+  "uploadFileAndStart": "Upload questions and start the test"
 }

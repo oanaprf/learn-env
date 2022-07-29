@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { isEqual } from "lodash";
 import cn from "classnames";
 import { useTranslation } from "react-i18next";
+import { Button, Card } from "antd";
 
 import "./styles.css";
 import { STATUS } from "../constants";
@@ -27,11 +28,12 @@ const QuestionsCard = ({ originalData }) => {
   };
 
   const onSelectAnswer = ({ target: { value } }) =>
-    setSelectedAnswers((currentAnswers = []) =>
-      currentAnswers?.includes(value)
-        ? currentAnswers?.filter((answer) => answer !== value)
-        : [...currentAnswers, value]
-    );
+    // setSelectedAnswers((currentAnswers = []) =>
+    //   currentAnswers?.includes(value)
+    //     ? currentAnswers?.filter((answer) => answer !== value)
+    //     : [...currentAnswers, value]
+    // );
+    setSelectedAnswers([value]);
 
   const onSaveAnswer = () => setStatus(STATUS.ANSWERED);
 
@@ -41,67 +43,69 @@ const QuestionsCard = ({ originalData }) => {
     setCurrentQuestion(data.splice(Math.floor(Math.random() * data?.length), 1)?.[0]);
   };
 
-  return (
-    <div className="container">
-      {t(`statuses.${status?.toLocaleLowerCase()}`)}
-      {status === STATUS.NOT_STARTED && (
-        <button onClick={onStart}>{t("startTest")}</button>
-      )}
-      {[STATUS.IN_PROGRESS, STATUS.ANSWERED].includes(status) && (
-        <div className="question">
-          <div>{t("questionsLeftCount", { count: data?.length })}</div>
-          <b>{currentQuestion?.question}</b>
-          {currentQuestion?.answers?.map((answer) => (
-            <div
-              className={cn(
-                status === STATUS.ANSWERED &&
-                  currentQuestion?.selectedAnswers?.includes(answer) &&
-                  "selected-answer"
-              )}
-              key={answer}
-            >
-              <input
-                type="checkbox"
-                id={answer}
-                value={answer}
-                onChange={onSelectAnswer}
-                disabled={status === STATUS.ANSWERED}
-              />
-              <label htmlFor={answer}>{answer}</label>
-              {status === STATUS.ANSWERED &&
-                (currentQuestion?.correct?.includes(answer) ? (
-                  <span className="correct">{t("correct")}</span>
-                ) : (
-                  <span className="incorrect">{t("incorrect")}</span>
-                ))}
-            </div>
-          ))}
-          {status === STATUS.ANSWERED && (
-            <div>
-              {t("yourAnswerIs")}
-              {isEqual(selectedAnswers, currentQuestion?.correct) ? (
-                <span className="correct">{t("correct")}</span>
-              ) : (
-                <span className="incorrect">{t("incorrect")}</span>
-              )}
-            </div>
+  return status === STATUS.NOT_STARTED ? (
+    <Button type="primary" onClick={onStart}>
+      {t("startTest")}
+    </Button>
+  ) : (
+    <Card
+      title={currentQuestion?.question}
+      bodyStyle={{ display: "flex", flexDirection: "column" }}
+    >
+      {/* {t(`statuses.${status?.toLocaleLowerCase()}`)} */}
+      {/* <div>{t("questionsLeftCount", { count: data?.length })}</div> */}
+      {currentQuestion?.answers?.map((answer) => (
+        <div
+          key={answer}
+          className={cn(
+            "answer",
+            status === STATUS.ANSWERED &&
+              currentQuestion?.correct?.includes(answer) &&
+              "correct-answer"
           )}
-          <button
-            disabled={!selectedAnswers?.length || status === STATUS.ANSWERED}
-            onClick={onSaveAnswer}
-          >
-            {t("sendYourAnswer")}
-          </button>
-          {status === STATUS.ANSWERED ? (
-            data?.length ? (
-              <button onClick={onNextQuestion}>{t("nextQuestion")}</button>
-            ) : (
-              <button onClick={onRestart}>{t("restartTest")}</button>
-            )
-          ) : null}
+        >
+          <input
+            type="radio"
+            id={answer}
+            value={answer}
+            onChange={onSelectAnswer}
+            disabled={status === STATUS.ANSWERED}
+            className="radio-input"
+          />
+          <label htmlFor={answer}>{answer}</label>
+        </div>
+      ))}
+      {status === STATUS.ANSWERED && (
+        <div className="your-answer-is">
+          {t("yourAnswerIs")}
+          {isEqual(selectedAnswers, currentQuestion?.correct) ? (
+            <span className="correct">{t("correct")}</span>
+          ) : (
+            <span className="incorrect">{t("incorrect")}</span>
+          )}
         </div>
       )}
-    </div>
+      <div className="buttons">
+        <Button
+          type="primary"
+          disabled={!selectedAnswers?.length || status === STATUS.ANSWERED}
+          onClick={onSaveAnswer}
+        >
+          {t("sendYourAnswer")}
+        </Button>
+        {status === STATUS.ANSWERED ? (
+          data?.length ? (
+            <Button type="primary" className="button" onClick={onNextQuestion}>
+              {t("nextQuestion")}
+            </Button>
+          ) : (
+            <Button type="primary" className="button" onClick={onRestart}>
+              {t("restartTest")}
+            </Button>
+          )
+        ) : null}
+      </div>
+    </Card>
   );
 };
 

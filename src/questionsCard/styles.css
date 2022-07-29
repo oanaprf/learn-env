@@ -1,10 +1,39 @@
-.container {
-  width: 300px;
-  height: 300px;
-  padding: 20px 50px;
+.answer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
 
+.radio-input {
+  margin: 3px 5px 0 0;
+}
+
+.correct-answer {
+  background-color: yellowgreen;
+}
+
+.correct {
+  background-color: yellowgreen;
+  font-weight: bold;
+  padding: 2px 3px 3px 3px;
+}
+
+.incorrect {
+  background-color: crimson;
+  font-weight: bold;
+  padding: 2px 3px 3px 3px;
+}
+
+.your-answer-is {
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.button {
+  margin-left: 15px;
 }
