@@ -4,7 +4,6 @@ export const extractData = (fileData) => {
   const rows = fileData?.split("\n");
   const rowData = rows?.map((row) => row?.replace("\r", "")?.split("\t"));
   const groupedData = rowData?.reduce((res, curr) => {
-    console.log(curr);
     const question = curr.shift();
     const delimiterIndex = curr?.lastIndexOf("");
     return [
