@@ -37,3 +37,17 @@
 .button {
   margin-left: 15px;
 }
+
+.ant-card {
+  width: 800px;
+}
+
+.ant-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-card-head-title {
+  white-space: pre-wrap !important;
+  text-overflow: initial;
+}

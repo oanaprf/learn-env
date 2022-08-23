@@ -48,10 +48,7 @@ const QuestionsCard = ({ originalData }) => {
       {t("startTest")}
     </Button>
   ) : (
-    <Card
-      title={currentQuestion?.question}
-      bodyStyle={{ display: "flex", flexDirection: "column" }}
-    >
+    <Card title={currentQuestion?.question}>
       {/* {t(`statuses.${status?.toLocaleLowerCase()}`)} */}
       {/* <div>{t("questionsLeftCount", { count: data?.length })}</div> */}
       {currentQuestion?.answers?.map((answer) => (
