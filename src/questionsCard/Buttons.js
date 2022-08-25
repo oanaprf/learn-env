@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { STATUS } from "../constants";
+import { STATUS, REMAINING_QUESTIONS } from "../constants";
 
 const Buttons = ({
   status,
@@ -22,7 +22,10 @@ const Buttons = ({
     setStatus(STATUS.IN_PROGRESS);
   };
 
-  const onSaveAnswer = () => setStatus(STATUS.ANSWERED);
+  const onSaveAnswer = () => {
+    localStorage.setItem(REMAINING_QUESTIONS, JSON.stringify(data));
+    setStatus(STATUS.ANSWERED);
+  };
 
   const onNextQuestion = async () => {
     await setSelectedAnswer(null);

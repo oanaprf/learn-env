@@ -3,15 +3,18 @@ import { Switch, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { read, utils } from "xlsx";
+import { isEmpty } from "lodash";
 
 import "./App.css";
 import QuestionsCard from "./questionsCard/QuestionsCard";
-import { LANGUAGES } from "./constants";
+import { LANGUAGES, REMAINING_QUESTIONS } from "./constants";
 import { mapData } from "./utils";
 
 function App() {
   const { t, i18n } = useTranslation();
-  const [originalData, setOriginalData] = useState();
+  const [originalData, setOriginalData] = useState(
+    JSON.parse(localStorage.getItem(REMAINING_QUESTIONS))
+  );
   const [language, setLanguage] = useState(LANGUAGES.RO);
 
   const onLanguageChange = () => {
@@ -51,7 +54,7 @@ function App() {
         className="language-switch"
       />
       <div className="body">
-        {originalData ? (
+        {!isEmpty(originalData) ? (
           <QuestionsCard originalData={originalData} />
         ) : (
           <Upload {...uploadProps}>

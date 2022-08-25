@@ -8,3 +8,5 @@ export const LANGUAGES = {
   EN: "EN",
   RO: "RO",
 };
+
+export const REMAINING_QUESTIONS = "REMAINING_QUESTIONS";
