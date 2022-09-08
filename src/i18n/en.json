@@ -6,12 +6,17 @@
     "in_progress": "In progress",
     "answered": "Answered"
   },
-  "questionsLeftCount": "You have {{count}} questions left",
+  "totalAnswered": "Total answered",
   "correct": "CORRECT",
   "incorrect": "WRONG",
   "yourAnswerIs": "Your answer is ",
   "sendYourAnswer": "Send your answer",
   "nextQuestion": "Next question",
   "restartTest": "Restart the test",
-  "uploadFileAndStart": "Upload questions and start the test"
+  "uploadFileAndStart": "Upload questions",
+  "learningEnvironment": "Learning environment",
+  "miniTest": "{{questionsCount}} questions quiz",
+  "savedData": "Do you wish to continue where you left off? If not, your progress will be deleted!",
+  "yes": "Yes",
+  "no": "No"
 }

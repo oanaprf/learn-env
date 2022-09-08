@@ -2,7 +2,11 @@ import React from "react";
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { STATUS, REMAINING_QUESTIONS } from "../constants";
+import {
+  STATUS,
+  REMAINING_QUESTIONS,
+  TEST_ENV_REMAINING_QUESTIONS,
+} from "../../constants";
 
 const Buttons = ({
   status,
@@ -13,6 +17,9 @@ const Buttons = ({
   selectedAnswer,
   setSelectedAnswer,
   setCurrentQuestion,
+  isTestEnv,
+  setAnswersStatus,
+  hasAnsweredCorrectly,
 }) => {
   const { t } = useTranslation();
 
@@ -23,7 +30,14 @@ const Buttons = ({
   };
 
   const onSaveAnswer = () => {
-    localStorage.setItem(REMAINING_QUESTIONS, JSON.stringify(data));
+    setAnswersStatus(({ correct, incorrect }) => ({
+      correct: hasAnsweredCorrectly ? correct + 1 : correct,
+      incorrect: hasAnsweredCorrectly ? incorrect : incorrect + 1,
+    }));
+    localStorage.setItem(
+      isTestEnv ? TEST_ENV_REMAINING_QUESTIONS : REMAINING_QUESTIONS,
+      JSON.stringify(data)
+    );
     setStatus(STATUS.ANSWERED);
   };
 

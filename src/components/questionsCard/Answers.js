@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { Radio, Space } from "antd";
 
-import { STATUS } from "../constants";
+import { STATUS } from "../../constants";
 
 const Answers = ({ currentQuestion, status, selectedAnswer, setSelectedAnswer }) => {
   const onSelectAnswer = ({ target: { value } }) => setSelectedAnswer(value);

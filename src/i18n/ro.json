@@ -6,12 +6,17 @@
     "in_progress": "In desfasurare",
     "answered": "Raspuns trimis"
   },
-  "questionsLeftCount": "Mai ai {{count}} intrebari ramase",
+  "totalAnswered": "Total raspunse",
   "correct": "CORECT",
   "incorrect": "GRESIT",
   "yourAnswerIs": "Raspunsul tau este ",
   "sendYourAnswer": "Trimite raspunsul",
   "nextQuestion": "Urmatoarea intrebare",
   "restartTest": "Reia testul",
-  "uploadFileAndStart": "Incarca intrebarile si incepe testul"
+  "uploadFileAndStart": "Incarca intrebarile",
+  "learningEnvironment": "Mediul de invatare",
+  "miniTest": "Test de {{questionsCount}} de intrebari",
+  "savedData": "Vrei sa continui de unde ai ramas? Daca nu, progresul va fi sters!",
+  "yes": "Da",
+  "no": "Nu"
 }

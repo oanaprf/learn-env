@@ -6,15 +6,13 @@ import { read, utils } from "xlsx";
 import { isEmpty } from "lodash";
 
 import "./App.css";
-import QuestionsCard from "./questionsCard/QuestionsCard";
-import { LANGUAGES, REMAINING_QUESTIONS } from "./constants";
+import LearningOptions from "./components/learningOptions/LearningOptions";
+import { LANGUAGES } from "./constants";
 import { mapData } from "./utils";
 
 function App() {
   const { t, i18n } = useTranslation();
-  const [originalData, setOriginalData] = useState(
-    JSON.parse(localStorage.getItem(REMAINING_QUESTIONS))
-  );
+  const [originalData, setOriginalData] = useState();
   const [language, setLanguage] = useState(LANGUAGES.RO);
 
   const onLanguageChange = () => {
@@ -55,7 +53,7 @@ function App() {
       />
       <div className="body">
         {!isEmpty(originalData) ? (
-          <QuestionsCard originalData={originalData} />
+          <LearningOptions originalData={originalData} />
         ) : (
           <Upload {...uploadProps}>
             <Button icon={<UploadOutlined />}>{t("uploadFileAndStart")}</Button>

@@ -42,3 +42,32 @@
   white-space: pre-wrap !important;
   text-overflow: initial;
 }
+
+.questions-card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.answers-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px; 
+}
+
+.label {
+  font-weight: bold;
+}
+
+.correct-count {
+  color: yellowgreen;
+  font-weight: bold;
+}
+
+.incorrect-count {
+  color: crimson;
+  font-weight: bold;
+}
+
+.correct-container {
+  margin-right: 20px;
+}
