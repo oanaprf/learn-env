@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Popconfirm } from "antd";
+import { shuffle } from "lodash";
 
 import "./styles.css";
 import {
@@ -31,8 +32,7 @@ const LearningOptions = ({ originalData }) => {
   const onTestStart = () => {
     setIsTestEnv(true);
     localStorage.setItem(TEST_ENV_REMAINING_QUESTIONS, null);
-    console.log(originalData, originalData.slice(0, 90));
-    setData(originalData.slice(0, TEST_QUESTIONS_COUNT));
+    setData(shuffle(originalData).slice(0, TEST_QUESTIONS_COUNT + 2));
     setStatus(STATUS.IN_PROGRESS);
   };
 
@@ -40,7 +40,7 @@ const LearningOptions = ({ originalData }) => {
     setIsTestEnv(true);
     setData(
       JSON.parse(localStorage.getItem(TEST_ENV_REMAINING_QUESTIONS)) ??
-        originalData.slice(0, TEST_QUESTIONS_COUNT)
+        shuffle(originalData).slice(0, TEST_QUESTIONS_COUNT + 2)
     );
     setStatus(STATUS.IN_PROGRESS);
   };

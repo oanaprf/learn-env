@@ -27,7 +27,7 @@ const QuestionsCard = ({ originalData, status, setStatus, isTestEnv, data, setDa
         <div className="answers-status">
           <span>
             <span className="label">{t("totalAnswered")}: </span>
-            {TEST_QUESTIONS_COUNT - +data?.length - 2}/{TEST_QUESTIONS_COUNT}
+            {TEST_QUESTIONS_COUNT - +data?.length}/{TEST_QUESTIONS_COUNT}
           </span>
           <span>
             <span className="correct-container">
